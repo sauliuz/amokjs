@@ -63,8 +63,8 @@ Mock API will serve you response content from matching files in the */node/route
 
 Here are couple of headers this mock project supports:
 
-* x-mock-response-code request header allows developers to request custom HTTP response code from mock API
-* x-mock-type header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
+* **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
+* **x-mock-type** header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
 
 
 
