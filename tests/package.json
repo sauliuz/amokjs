@@ -1,0 +1,7 @@
+{
+	"name": "promotional-initiatives-v1-test",
+	"version": "1.0.0",
+	"devDependencies": {
+		"apickli": "^1.0.0"
+	}
+}

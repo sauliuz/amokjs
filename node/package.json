@@ -1,0 +1,10 @@
+{
+  "name": "amock",
+  "version": "0.0.1",
+   "description":"amock",  
+   "main":"app.js",
+  "dependencies": {
+    "express":"latest",
+    "body-parser":"latest"
+  }
+}

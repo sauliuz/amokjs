@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <RouteRule name="node">
+        <TargetEndpoint>node</TargetEndpoint>
+    </RouteRule>    
+    <HTTPProxyConnection>
+        <BasePath>/mock-api</BasePath>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+</ProxyEndpoint>
