@@ -57,7 +57,18 @@ Cucumber.js tests will be performed as the last step of deployment. If you want 
 
 #####Use
 
-Once your mock API is successfully uploaded to Apigee you can make API request to it and get mocked responses. Here are example curl comands to test mock API installed on [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization:
+Once your mock API is successfully uploaded to Apigee you can make API request to it and get mocked responses. 
+
+Mock API will serve you response content from matching files in the */node/routes/responses* directory. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml* in */node/routes/responses*. As simple as that.
+
+Here are couple of headers this mock project supports:
+
+* x-mock-response-code request header allows developers to request custom HTTP response code from mock API
+* x-mock-type header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
+
+
+
+Here are example few curl comands to test the mock API installed on [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization:
 
 	curl -XPOST 'http://importantorganization-test.apigee.net/mock-api/html'
 	
