@@ -61,17 +61,25 @@ Once your mock API is successfully uploaded to Apigee you can make API request t
 
 Mock API will serve you response content from matching files in the */node/routes/responses* directory. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml* in */node/routes/responses*. As simple as that.
 
-Here are couple of headers this mock project supports:
+######Supported Headers
+
+Headers amock supports:
 
 * **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
-* **x-mock-type** header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
+* **x-mock-extention** header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
 
+######Supported template variables
 
+In your response files you can use several template variables in order to get values generated dynamically. Below are the template values **amock** supports:
+
+* **@date@** - will be replaced with the current timestamp
+* **@longid@** - will be replaced with the 10 digits long random number
+* **@shortid@** - will be replaced with the random number up to 5 digits long
+
+######Example curl requests
 
 Here are example few curl comands to test the mock API installed on [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization:
 
 	curl -XPOST 'http://importantorganization-test.apigee.net/mock-api/html'
-	
 	curl -XPOST -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
-	
 	curl -XPOST -H "x-mock-response-code: 500" -H "x-mock-type: _error1" 'http://importantorganization-test.apigee.net/mock-api/xml' 
