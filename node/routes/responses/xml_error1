@@ -3,5 +3,6 @@
   <!--  TITLE SLIDE  -->
   <slide type="all">
     <title>Error1</title>
+    <item>Todays date @date@</item>
   </slide>
 </slideshow>

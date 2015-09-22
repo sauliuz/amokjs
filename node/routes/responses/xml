@@ -7,14 +7,8 @@
   <!--  OVERVIEW  -->
   <slide type="all">
     <title>Overview</title>
-    <item>Why
-
-      <em>WonderWidgets</em>
-      are great</item>
-    <item/>
-    <item>Who
-
-      <em>buys</em>
-      WonderWidgets</item>
+    <item>Why <em>WonderWidgets</em> are great</item>
+    <item>Who <em>buys</em> WonderWidgets?</item>
+    <item>Todays date @date@</item>
   </slide>
 </slideshow>

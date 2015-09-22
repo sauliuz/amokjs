@@ -3,9 +3,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apigee</groupId>
-	<artifactId>mock</artifactId>
+	<artifactId>amock</artifactId>
 	<version>-</version> <!-- hack to have readable zipped bundle name -->
-	<name>mock</name>
+	<name>amock</name>
 	<packaging>pom</packaging>
 
 	<pluginRepositories>
