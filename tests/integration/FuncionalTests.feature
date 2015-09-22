@@ -1,6 +1,5 @@
-Feature: Validating if Mock API funcionality matches specifications
-	As an API developer, I want to make sure that my Mock API has all the funcionality
-	Which is described in backend service specification
+Feature: Validating the existing out of the box funcionality of amock
+	As an API developer, I want to make sure that my Mock API has all the described funcionality
 	
 	Scenario: I should get default response code if no mock headers are supplied
 		When I POST to /html

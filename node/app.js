@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 /***** Supported routes ******/
 // mock only supports this type of request /{mock-resource-name}
 // for example yourapi.com/soapmock
-app.post('/:resource', mock.process);
+app.post('/:resource', mock.respond);
 
 // for everything else
 // catch all route, to catch all not supported requests and bounce back
@@ -36,7 +36,7 @@ app.all("*", function(req,res){
         'Content-Type': 'application/json',
     });
     res.status(404);
-    var errorMsg='{"error":"Not supported mock request"}';
+    var errorMsg='{"error":"Mock resource not not found"}';
 	res.send(errorMsg);
 });
 
