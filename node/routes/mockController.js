@@ -27,7 +27,7 @@ var respondFromFile = function(res, resourceFullName, responseCode) {
 
 			// support for template variables
 			var date = new Date();
-			var longid = Math.floor(Math.random() * 2000000000) + 1000;
+			var longid = Math.floor(Math.random() * 20000000000) + 10000000000;
 			var shortid = Math.floor(Math.random() * 20000) + 1000;
 
 			responseData = data;
