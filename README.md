@@ -78,7 +78,7 @@ In your response files you can use several template variables in order to get va
 
 ######Example curl requests
 
-Here are example few curl comands to test the mock API installed on [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization:
+**amock** example is deployed as [publically available API](http://importantorganization-test.apigee.net/mock-api/about). It is installed in [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization. Below are few example curl requests to test the mock API:
 
 	curl -XPOST 'http://importantorganization-test.apigee.net/mock-api/html'
 	curl -XPOST -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
