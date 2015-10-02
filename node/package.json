@@ -4,9 +4,9 @@
    "description":"amock",  
    "main":"app.js",
   "dependencies": {
-    "express":"latest",
-    "body-parser":"latest",
-    "casual":"latest",
-    "moment":"latest"
+    "express":"4.13.3",
+    "body-parser":"1.14.1",
+    "casual":"1.4.7",
+    "moment":"2.10.6"
   }
 }

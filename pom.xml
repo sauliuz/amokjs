@@ -73,7 +73,8 @@
 			</plugins>
 		</pluginManagement> 
 
-		<plugins>
+		<plugins>			
+ 
 			<!-- run jslint -->
 			<plugin>
 				<groupId>com.cj.jshintmojo</groupId>
