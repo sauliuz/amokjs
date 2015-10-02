@@ -72,7 +72,8 @@ Headers amock supports:
 
 In your response files you can use several template variables in order to get values generated dynamically. Below are the template values **amock** supports:
 
-* **@date@** - will be replaced with the current timestamp
+* **@date@** - will be replaced with the current timestamp. Format: YYYY-MM-DD
+* **@randomDate@** - will be replaced with the random timestamp. Format: YYYY-MM-DD
 * **@longid@** - will be replaced with the 10 digits long random number
 * **@shortid@** - will be replaced with the random number up to 5 digits long
 
