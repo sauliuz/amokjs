@@ -59,14 +59,17 @@ Cucumber.js tests will be performed as the last step of deployment. If you want 
 
 Once your mock API is successfully uploaded to Apigee you can make API request to it and get mocked responses. 
 
-Mock API will serve you response content from matching files in the */node/routes/responses* directory. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml* in */node/routes/responses*. As simple as that.
+Mock API will serve response content from a file matching files in the */node/routes/responses* directory. There are 2 ways of requesting mock responses from API powered by amock.
+
+* Mock API will serve response content from a file matching files file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
+* Mock API will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
 
 ######Supported Headers
 
 Headers amock supports:
 
 * **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
-* **x-mock-extention** header allows developers to have multiple similar response files with different subnames. For example if *x-mock-type: _error1* header is supplied mock API will try to serve response from *filename_error1* file.
+* **x-mock-filename** request header allows developers to pass mock file name in the HTTP request header rather then request path. For example if *x-mock-filename: xml* is used in the header and request path is */* mock API will attempt to serve response from *xml* file.
 
 ######Supported template variables
 

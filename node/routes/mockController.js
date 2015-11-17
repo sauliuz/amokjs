@@ -8,8 +8,8 @@ var moment = require('moment');
 var apigee = require('apigee-access');
 
 exports.respond = function(req, res) {
-	var resourceName = req.params.resource;
-	var resourceType = req.headers['x-mock-extention'] || '';
+	var resourceName = req.params.resource || '';
+	var resourceType = req.headers['x-mock-filename'] || '';
 	var responseCode = req.headers['x-mock-response-code'] || 200;
 	var responseShouldBeCached = ((req.headers['x-mock-cache-response']) ? true : false);
 	var cacheKey = req.headers['x-mock-cache-key'];
@@ -32,7 +32,7 @@ var respondFromFile = function(res, resourceFullName, responseCode, responseShou
 		// no file or error reading file
 	    if (err) {
 			res.status(404);
-			res.send('{"error":"Mock resource not not found"}');
+			res.send('{"error":"Mock resource not found"}');
 			return;
 	    }
 
@@ -78,7 +78,6 @@ var respondFromFile = function(res, resourceFullName, responseCode, responseShou
 		}
 	});
 };
-
 
 var respondFromCache = function(res,cacheKey) {
 

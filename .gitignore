@@ -27,3 +27,5 @@ build/Release
 
 # dependencies
 target
+
+node_modules
