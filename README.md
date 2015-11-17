@@ -84,6 +84,6 @@ In your response files you can use several template variables in order to get va
 
 **amock** example is deployed as [publically available API](http://importantorganization-test.apigee.net/mock-api/about). It is installed in [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization. Below are few example curl requests to test the mock API:
 
-	curl -XPOST 'http://importantorganization-test.apigee.net/mock-api/html'
-	curl -XPOST -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
-	curl -XPOST -H "x-mock-response-code: 500" -H "x-mock-type: _error1" 'http://importantorganization-test.apigee.net/mock-api/xml' 
+	curl -XGET 'http://importantorganization-test.apigee.net/mock-api/xml'
+	curl -XGET -H 'x-mock-filename: xml' 'http://importantorganization-test.apigee.net/mock-api'
+	curl -XGET -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
