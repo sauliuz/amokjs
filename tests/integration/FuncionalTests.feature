@@ -14,3 +14,8 @@ Feature: Validating the existing out of the box funcionality of amock
 		Given I set x-mock-response-code header to 404
 		When I POST to /html
 		Then response code should be 404
+
+	Scenario: I should get successful response by suplying mock filename in the request header
+		Given I set x-mock-filename header to html
+		When I POST to /
+		Then response code should be 200
