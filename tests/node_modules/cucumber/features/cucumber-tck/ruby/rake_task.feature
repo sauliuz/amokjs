@@ -1,1 +1,0 @@
-Feature: Rake task (TODO: Move to cucumber-ruby)
