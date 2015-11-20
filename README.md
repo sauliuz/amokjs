@@ -1,72 +1,76 @@
-### Mock which helps you quickly build backend mocks
+### amok helps you quickly build backend mocks
 
-This example project and totorial will help you quickly build and manage web service mocks. With the help of [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) and [Node.js](https://nodejs.org/)
+> amok - to run wildly; without self-control
+
+**amok** package helps you to build backend mocks quickly. In the **development** and **test** environments backend systems are somewhat not stable.
+
+**amok** allows developers to gain full control of request / response data while developing API layer. This is specifically useful in development environments. The tutorial below walks you through the example implementation.
+
+This repositary also contains 2 example projects. Example amok with standalone [Node.js](https://nodejs.org/) application and amok project ready to deploy to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom.
+
+* [Example standalone Node.js app with amok](examples/standalone-amok)
+* [Example Apigee API proxy with amok](examples/apigee-amok)
+ 
 
 #### Why?
 
 While building API's in many cases developers find that backend systems and services in development and test environments are:
 
-* not very stable
-* being worked on by backend teams and hense are not yet ready for consumption
-* doesnt have stable set of data for testing integrations
+* not stable
+* still being developed by backend dev teams and are not ready for consumption
+* without consistant and stable data sets
 
-Its completly ok as these services are slower to develop, maintain and test. And this is the main reason why API developers have to build API layers in front of them in the first place.
 
-So how do we address this problem?
+Its completly ok as these services are slower to develop, maintain and test. And this is the main reason why we build API layers in front of slow backend systems.
+
+How do we address this problem?
 
 #### How?
 
-Developers can use [Node.js](https://nodejs.org/) application to quickly mock example backend responses. Node.js with its [Express](http://expressjs.com/) module is a perfect fit for such purpose. Easy to add new supported request paths and serve custom responses back.
-
-It can also serve responses from flat files (**JSON**, **XML**, **SOAP**, you name it), which makes the task of extending such mock quite simple. Just add a new resource file into derectory.
-
-Apigee Edge [supports Node.js apps](http://apigee.com/docs/api-services/content/overview-nodejs-apigee-edge) as a backend out of the box. Instead of pointing API in Apigee Edge to cloud based target, you just point it to your Node.js application (which is deployed as part of the bundle - see [Apigee Edge deployment examples](https://github.com/sauliuz/apigee-maven-deployments)).
-
-This way you dont need to host your Node Express mock application sepratly - Apigee Edge hosts it for you and exposes your mock API for consumption via http / https.
-
-Aditionally you could also leverage other inbuilt Apigee Edge functionality, like traffic management or OAuth 2.0 support.
-
-#### Whats under the hood?
-
-**amock** project consists of simple Node.js application which is incorporated with API bundle to be deployed to Apigee Edge.
-
-It mocks the behaviour of well known online site [httpbin.org](http://httpbin.org/). Lets look at the structure of this project:
-
-	amock/
-	---- apiproxy/
-	---- node/
-	---- tests/	
-	---- pom.xml
-	---- Readme.md
-	
-	
-**apiproxy** direcotory contains standard Apigee Edge API bundle, **node** directory contains Node.js application. **test** directory contains simple funcional tests in order to test that our mock API works as expected. Tests are based on [Cucumber.js](https://github.com/cucumber/cucumber-js) and [Apickli](https://github.com/apickli/apickli) - another open source project me and my coleague have open sourced. And finally **pom.xml** is the configuration for Maven deployment. I'm planning to swap Maven with [Gulp](http://gulpjs.com/) in the future but you have to stick with Maven for now.
-
-#### How To
-
-#####Install
-In order to deploy the project to Apigee Edge you can run the below Maven comand. After successfull deployment you will have new API named **mock** with the base path **/mock-api**
-
-	mvn install -P{environment name} -Dorganization={Apigee org name} -Dusername={Apigee username} -Dpassword={Apigee password} 
+**amok** serves responses from flat files in the specific project directory. It supports **JSON**, **XML**, **SOAP** and any other formats. The task of adding new backend mock response becomes copy paste task. Just add a new resource file into derectory and it will be served by **amok**.
 
 
-Cucumber.js tests will be performed as the last step of deployment. If you want to run them manually:
-
-	cd tests
-	cucumber-js integration/
+#### How To?
 
 #####Use
 
-Once your mock API is successfully uploaded to Apigee you can make API request to it and get mocked responses. 
+In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
-Mock API will serve response content from a file matching files in the */node/routes/responses* directory. There are 2 ways of requesting mock responses from API powered by amock.
+	var amok = require('amokjs'); 
 
-* Mock API will serve response content from a file matching files file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
-* Mock API will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
+By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
+
+	amok.setResponsesDirectory('new/responses/directory');
+	  
+
+Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
+
+	var amok = require('amokjs');
+	
+	// set response directory - optional
+	amok.setResponsesDirectory('new/responses');
+	
+	exports.get = function(req, res) {
+		// let amok handle mock responses
+		amok.respond(req,res);
+	};
+	
+	exports.post = function(req, res) {
+		// let amok handle mock responses
+		amok.respond(req,res);
+	};
+
+Check ready to go example projects we have: [standalone Node.js app with amok](examples/standalone-amok) or [Apigee mock api with amok](examples/apigee-amok).
+
+**amok** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
+
+* **amok** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
+
+* **amok** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
 
 ######Supported Headers
 
-Headers amock supports:
+Headers **amok** supports:
 
 * **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
 * **x-mock-filename** request header allows developers to pass mock file name in the HTTP request header rather then request path. For example if *x-mock-filename: xml* is used in the header and request path is */* mock API will attempt to serve response from *xml* file.
