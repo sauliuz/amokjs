@@ -4,7 +4,7 @@
         <TargetEndpoint>node</TargetEndpoint>
     </RouteRule>    
     <HTTPProxyConnection>
-        <BasePath>/mock-api</BasePath>
+        <BasePath>/amok-api</BasePath>
         <VirtualHost>default</VirtualHost>
     </HTTPProxyConnection>
 </ProxyEndpoint>

@@ -1,48 +1,44 @@
-### amok helps you quickly build backend mocks
-
-> amok - to run wildly; without self-control
-
-**amok** package helps you to build backend mocks quickly. In the **development** and **test** environments backend systems are somewhat not stable.
-
-**amok** allows developers to gain full control of request / response data while developing API layer. This is specifically useful in development environments. The tutorial below walks you through the example implementation.
-
-This repositary also contains 2 example projects. Example amok with standalone [Node.js](https://nodejs.org/) application and amok project ready to deploy to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom.
-
-* [Example standalone Node.js app with amok](examples/standalone-amok)
-* [Example Apigee API proxy with amok](examples/apigee-amok)
- 
-
-#### Why?
-
-While building API's in many cases developers find that backend systems and services in development and test environments are:
-
-* not stable
-* still being developed by backend dev teams and are not ready for consumption
-* without consistant and stable data sets
+### amok example for standalone Node.js apps
 
 
-Its completly ok as these services are slower to develop, maintain and test. And this is the main reason why we build API layers in front of slow backend systems.
-
-How do we address this problem?
-
-#### How?
-
-**amok** serves responses from flat files in the specific project directory. It supports **JSON**, **XML**, **SOAP** and any other formats. The task of adding new backend mock response becomes copy paste task. Just add a new resource file into derectory and it will be served by **amok**.
+This is **amok** implementation exapmle for [Node.js](https://nodejs.org/) applications. It presents ready to run and deploy Node.js app.
 
 
-#### How To Use?
+#### Whats under the hood?
+
+This project is a standard Node.js application using Express.js middleware and **amock** package.
+
+It mocks some of the behaviour of well known online site [httpbin.org](http://httpbin.org/). Lets look at the structure of this project:
+
+	amok/
+	---- responses/
+	---- app.js
+	---- controller.js	
+	---- package.json
+	
+	
+**responses** direcotory contains backend mock responses files with the response content. **app.js** is the main application file which invokes Express.js and **controller.js** is using **amok** to send mock responses back to the client application.
+
+**package.json** manages all the dependencies and app metadata.
+
+
+#### How to Use?
 
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
-	var amok = require('amokjs'); 
+	```javascript
+	var amok = require('amokjs');
+	``` 
 
 By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
 
+	```javascript
 	amok.setResponsesDirectory('new/responses/directory');
-	  
+	```  
 
 Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
 
+	```javascript	
 	var amok = require('amokjs');
 	
 	// set response directory - optional
@@ -57,6 +53,7 @@ Whats left is to invoke *respond* method of amok and provide it with [Express.js
 		// let amok handle mock responses
 		amok.respond(req,res);
 	};
+	```
 
 Check ready to go example projects we have: [standalone Node.js app with amok](examples/standalone-amok) or [Apigee mock api with amok](examples/apigee-amok).
 
@@ -86,6 +83,6 @@ In your response files you can use several template variables in order to get va
 
 **amock** example is deployed as [publically available API](http://importantorganization-test.apigee.net/mock-api/about). It is installed in [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization. Below are few example curl requests to test the mock API:
 
-	curl -XGET 'http://importantorganization-test.apigee.net/mock-api/xml'
-	curl -XGET -H 'x-mock-filename: xml' 'http://importantorganization-test.apigee.net/mock-api'
-	curl -XGET -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
+	curl -XGET 'http://localhost:3000/xml'
+	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3000/'
+	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3000/xml'
