@@ -1,8 +1,8 @@
 {
-  "name": "amock",
+  "name": "amok",
   "version": "1.0.0",
   "description": "Simple mocking framework for Node.js applications",
-  "main":"amock.js",
+  "main":"amok.js",
   "readme": "README.md",
   "author": {
     "name": "Saul Zukauskas",
