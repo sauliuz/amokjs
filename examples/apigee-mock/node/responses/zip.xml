@@ -7,8 +7,8 @@ xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assemb
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-		<directory>node/routes</directory>
-        <outputDirectory>routes</outputDirectory>
+		<directory>node/responses</directory>
+        <outputDirectory>responses</outputDirectory>
         <useDefaultExcludes>true</useDefaultExcludes>
         <includes>
             <include>**</include>

@@ -20,7 +20,7 @@ app.all("*", function(req,res){
         'Content-Type': 'application/json',
     });
     res.status(404);
-    var errorMsg='{"error":"Mock request type is not supported"}';
+    var errorMsg='{"error":"request type is not supported"}';
 	res.send(errorMsg);
 });
 

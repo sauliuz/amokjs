@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "express":"4.13.3",
-    "body-parser":"1.14.1"
+    "body-parser":"1.14.1",
+    "amokjs":"1.0.1"
   },
   "license": "MIT",
   "repository": {

@@ -3,9 +3,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apigee</groupId>
-	<artifactId>amock</artifactId>
+	<artifactId>amok</artifactId>
 	<version>-</version> <!-- hack to have readable zipped bundle name -->
-	<name>amock</name>
+	<name>amok</name>
 	<packaging>pom</packaging>
 
 	<pluginRepositories>
@@ -180,8 +180,8 @@
 							<goal>single</goal>
 						</goals>
 						<configuration>
-							<descriptor>${project.root.dir}/node/routes/zip.xml</descriptor>
-							<finalName>routes</finalName>
+							<descriptor>${project.root.dir}/node/responses/zip.xml</descriptor>
+							<finalName>responses</finalName>
 							<outputDirectory>${target.root.dir}/apiproxy/resources/node</outputDirectory>
 						</configuration>
 					</execution>
