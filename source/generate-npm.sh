@@ -1,8 +1,7 @@
 rm -rf ./npm
 mkdir ./npm
 
-cp ./apickli.js ./npm/apickli.js
-cp ./apickli-gherkin.js ./npm/apickli-gherkin.js
+cp ./amok.js ./npm/amok.js
 cp ../package.json ./npm/package.json
 cp ../../LICENSE ./npm/LICENSE
 cp ../../README.md ./npm/README.md

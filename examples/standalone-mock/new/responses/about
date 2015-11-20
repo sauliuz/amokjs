@@ -1,0 +1,5 @@
+{
+  "amock":"quick way to build mocks in Apigee Edge",
+  "about":"this projects is powered by Node.js and native Apigee Edge XML policies",
+  "author":"@sauliuz"
+}
