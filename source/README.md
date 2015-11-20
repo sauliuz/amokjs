@@ -36,7 +36,7 @@ How do we address this problem?
 
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
-	var amok = require('amok'); 
+	var amok = require('amokjs'); 
 
 By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
 
@@ -45,7 +45,7 @@ By default amok will be serving responses from **responses** directory at the ro
 
 Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
 
-	var amok = require('amok');
+	var amok = require('amokjs');
 	
 	// set response directory - optional
 	amok.setResponsesDirectory('new/responses');
