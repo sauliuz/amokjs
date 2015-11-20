@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>apigee</groupId>
+	<artifactId>amok</artifactId>
+	<version>-</version> <!-- hack to have readable zipped bundle name -->
+	<name>amok</name>
+	<packaging>pom</packaging>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+        <project.root.dir>${basedir}</project.root.dir>
+        <target.root.dir>${basedir}/target</target.root.dir>
+    </properties>
+	
+	<!-- This is where you add the environment specific properties under various profile names -->
+	<!-- For apigee.options, refer to "Advanced Configuration Options" under https://github.com/apigee/apigee-deploy-maven-plugin#pom-xml-sample -->
+	<profiles>
+		<profile>		
+			<id>test</id>
+			<properties>
+				<apigee.profile>test</apigee.profile>
+				<apigee.env>test</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
+				<apigee.org>${organization}</apigee.org>
+				<apigee.username>${username}</apigee.username>
+				<apigee.password>${password}</apigee.password>
+				<apigee.options>override</apigee.options>
+			</properties>
+		</profile>
+		<profile>		
+			<id>prod</id>
+			<properties>
+				<apigee.profile>prod</apigee.profile>
+				<apigee.env>prod</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
+				<apigee.org>${organization}</apigee.org>
+				<apigee.username>${username}</apigee.username>
+				<apigee.password>${password}</apigee.password>
+				<apigee.options>override</apigee.options>
+			</properties>
+		</profile>
+    </profiles>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>io.apigee.build-tools.enterprise4g</groupId>
+					<artifactId>apigee-edge-maven-plugin</artifactId>
+					<version>1.0.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement> 
+
+		<plugins>			
+ 
+			<!-- run jslint -->
+			<plugin>
+				<groupId>com.cj.jshintmojo</groupId>
+				<artifactId>jshint-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>jslint</id>
+						<phase>package</phase>
+						<goals>
+							<goal>lint</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>  
+					<directories>
+						<directory>apiproxy/resources/jsc</directory>
+						<directory>node</directory>
+					</directories>
+					<excludes>
+						<exclude>node/node_modules</exclude>
+					</excludes>
+					<reporter>jslint</reporter>
+				</configuration>
+			</plugin>
+			
+			<!-- copy the full apiproxy folder to target folder -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-node-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							 <!--this is important -->
+							<overwrite>true</overwrite>
+							 <!--target -->
+							<outputDirectory>${target.root.dir}/apiproxy</outputDirectory>
+							<resources>
+								<resource>
+									 <!--source -->
+									<directory>${project.root.dir}/apiproxy</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+
+					 <!--copy node.js root folder resources to target folder (excluding directories which have to be zipped) -->
+					<execution>
+						<id>grab-node-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${target.root.dir}/apiproxy/resources/node</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.root.dir}/node</directory>
+									<includes>
+										<include>*.js</include>
+										<include>*.json</include>
+									</includes>
+									<excludes>
+										<exclude>node_modules/**</exclude>
+										<exclude>routes/**</exclude>
+									</excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			 <!--zip up node.js folders and create the zip files under target folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					
+					<execution>
+						<id>zip-node-modules</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptor>${project.root.dir}/node/node_modules/zip.xml</descriptor>
+							<finalName>node_modules</finalName>
+							<outputDirectory>${target.root.dir}/apiproxy/resources/node</outputDirectory>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>zip-node-routes</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptor>${project.root.dir}/node/responses/zip.xml</descriptor>
+							<finalName>responses</finalName>
+							<outputDirectory>${target.root.dir}/apiproxy/resources/node</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>				
+			</plugin>
+
+			<plugin>
+				<groupId>io.apigee.build-tools.enterprise4g</groupId>
+				<artifactId>apigee-edge-maven-plugin</artifactId>
+				<configuration>
+					 <!--Use this module level config to skip module build. Make it true -->
+					<skip>false</skip> 
+				</configuration>
+				<executions>
+					<execution>
+						<id>configure-bundle-step</id>
+						<phase>package</phase>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+					 <!--deploy bundle -->
+					<execution>
+						<id>deploy-bundle-step</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- cleaning dirs -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+
+				<executions>
+					<execution>
+						<id>auto-clean-init</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>auto-clean-install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- run cucumber / apickli tests -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<executions>
+					<!-- run integration tests -->
+					<execution>
+						<id>integration</id>
+						<phase>install</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<environmentVariables>
+								<NODE_ENV>
+									${apigee.env}
+								</NODE_ENV>
+							</environmentVariables>
+							<executable>tests/node_modules/cucumber/bin/cucumber.js</executable>
+							<commandlineArgs>
+								tests/integration
+							</commandlineArgs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

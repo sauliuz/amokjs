@@ -1,0 +1,15 @@
+<!--   A SAMPLE set of slides   -->
+<slideshow author="Yours Truly" date="Date of publication" title="Sample Slide Show">
+  <!--  TITLE SLIDE  -->
+  <slide type="all">
+    <title>Wake up to WonderWidgets!</title>
+  </slide>
+  <!--  OVERVIEW  -->
+  <slide type="all">
+    <title>Overview</title>
+    <item>Why <em>WonderWidgets</em> are great</item>
+    <item>Who <em>buys</em> WonderWidgets?</item>
+    <item>Todays date: @date@</item>
+    <item>Random date: @randomDate@</item>
+  </slide>
+</slideshow>

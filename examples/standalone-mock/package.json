@@ -1,0 +1,21 @@
+{
+  "name": "standalone-amok-example",
+  "version": "0.0.1",
+  "description": "example implementation of amok",
+  "main":"app.js",
+  "readme": "README.md",
+  "author": {
+    "name": "Saul Zukauskas",
+    "url": "https://github.com/sauliuz"
+  },
+  "dependencies": {
+    "express":"4.13.3",
+    "body-parser":"1.14.1",
+    "amokjs":"1.0.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/api-bucket/amok.git"
+  }
+}
