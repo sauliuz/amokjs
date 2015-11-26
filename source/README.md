@@ -4,61 +4,49 @@
 
 **amok** package helps you to build backend mocks quickly. In the **development** and **test** environments backend systems are somewhat not stable.
 
-**amok** allows developers to gain full control of request / response data while developing API layer. This is specifically useful in development environments. The tutorial below walks you through the example implementation.
-
-This repositary also contains 2 example projects. Example amok with standalone [Node.js](https://nodejs.org/) application and amok project ready to deploy to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom.
+Project GitHub repositary contains 2 example projects. Example amok with standalone [Node.js](https://nodejs.org/) application and amok project ready to deploy to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom.
 
 * [Example standalone Node.js app with amok](examples/standalone-amok)
 * [Example Apigee API proxy with amok](examples/apigee-amok)
- 
 
-#### Why?
-
-While building API's in many cases developers find that backend systems and services in development and test environments are:
-
-* not stable
-* still being developed by backend dev teams and are not ready for consumption
-* without consistant and stable data sets
-
-
-Its completly ok as these services are slower to develop, maintain and test. And this is the main reason why we build API layers in front of slow backend systems.
-
-How do we address this problem?
 
 #### How?
 
-**amok** serves responses from flat files in the specific project directory. It supports **JSON**, **XML**, **SOAP** and any other formats. The task of adding new backend mock response becomes copy paste task. Just add a new resource file into derectory and it will be served by **amok**.
+**amok** serves responses from flat files in the specific project directory. It supports **JSON**, **XML**, **SOAP** and other formats. You can just add a new resource file into resources derectory and **amok** will serve it as response.
 
 
 #### How To Use?
 
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
-	var amok = require('amokjs'); 
+```javascript
+var amok = require('amokjs'); 
+```
 
 By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
 
-	amok.setResponsesDirectory('new/responses/directory');
-	  
+```javascript
+amok.setResponsesDirectory('new/responses/directory');
+```
 
 Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
 
-	var amok = require('amokjs');
+```javascript
+var amok = require('amokjs');
 	
-	// set response directory - optional
-	amok.setResponsesDirectory('new/responses');
+// set response directory - optional
+amok.setResponsesDirectory('new/responses');
 	
-	exports.get = function(req, res) {
-		// let amok handle mock responses
-		amok.respond(req,res);
-	};
+exports.get = function(req, res) {
+	// let amok handle mock responses
+	amok.respond(req,res);
+};
 	
-	exports.post = function(req, res) {
-		// let amok handle mock responses
-		amok.respond(req,res);
-	};
-
-Check ready to go example projects we have: [standalone Node.js app with amok](examples/standalone-amok) or [Apigee mock api with amok](examples/apigee-amok).
+exports.post = function(req, res) {
+	// let amok handle mock responses
+	amok.respond(req,res);
+};
+```
 
 **amok** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
 
