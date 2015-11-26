@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/amokjs.svg)](https://badge.fury.io/js/amokjs)
+
 ### amok helps you quickly build backend mocks
 
 > amok - to run wildly; without self-control
@@ -35,34 +37,34 @@ How do we address this problem?
 
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
-	```javascript
-	var amok = require('amokjs');
-	``` 
+```javascript
+var amok = require('amokjs');
+``` 
 
 By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
 
-	```javascript
-	amok.setResponsesDirectory('new/responses/directory');
-	```  
+```javascript
+amok.setResponsesDirectory('new/responses/directory');
+```  
 
 Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
 
-	```javascript	
-	var amok = require('amokjs');
-	
-	// set response directory - optional
-	amok.setResponsesDirectory('new/responses');
-	
-	exports.get = function(req, res) {
-		// let amok handle mock responses
-		amok.respond(req,res);
-	};
-	
-	exports.post = function(req, res) {
-		// let amok handle mock responses
-		amok.respond(req,res);
-	};
-	```
+```javascript
+var amok = require('amokjs');
+
+// set response directory - optional
+amok.setResponsesDirectory('new/responses');
+
+exports.get = function(req, res) {
+	// let amok handle mock responses
+	amok.respond(req,res);
+};
+
+exports.post = function(req, res) {
+	// let amok handle mock responses
+	amok.respond(req,res);
+};
+```
 
 Check ready to go example projects we have: [standalone Node.js app with amok](examples/standalone-amok) or [Apigee mock api with amok](examples/apigee-amok).
 
