@@ -19,10 +19,19 @@ It mocks some of the behaviour of well known online site [httpbin.org](http://ht
 	---- README.md
 	
 	
-**apiproxy** direcotory contains standard Apigee Edge API bundle, **node** directory contains Node.js application. **test** directory contains simple funcional tests in order to test that our mock API works as expected. Tests are based on [Cucumber.js](https://github.com/cucumber/cucumber-js) and [Apickli](https://github.com/apickli/apickli) - another open source project me and my coleague have open sourced. And finally **pom.xml** is the configuration for Maven deployment.
+**apiproxy** directory contains standard Apigee Edge API bundle, **node** directory contains Node.js application. **test** directory contains simple funcional tests in order to test that our mock API works as expected. Tests are based on [Cucumber.js](https://github.com/cucumber/cucumber-js) and [Apickli](https://github.com/apickli/apickli) - another open source project me and my coleague have open sourced. And finally **pom.xml** is the configuration for Maven deployment.
 
 #### How To Install
-In order to deploy the project to Apigee Edge you can run the below Maven comand. After successfull deployment you will have new API named **amok** with the base path **/amok-api**
+First, you have to install Node.js dependency packages in **node** and **test** directories
+	
+	cd node
+	npm install
+	
+	cd ../tests
+	npm install
+
+
+Now in order to deploy the project to Apigee Edge you can run the below Maven comand. After successfull deployment you will have new API named **amok** with the base path **/amok-api**
 
 	mvn install -P{environment name} -Dorganization={Apigee org name} -Dusername={Apigee username} -Dpassword={Apigee password} 
 
