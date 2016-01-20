@@ -20,10 +20,8 @@ Project GitHub repositary contains 2 example projects. Example amok with standal
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
 ```javascript
-	var amok = require('amokjs'); 
+var amok = require('amokjs'); 
 ```
-
-**amok** supports 2 modes.
 
 ##### local mode
 **amok** can serve responses from files located in the local directory (in the same place where nodejs application is running). By default amok starts in the **local** mode.
