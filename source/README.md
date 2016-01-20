@@ -23,25 +23,34 @@ In order to use amok package, you have to add it as a dependency within your Nod
 	var amok = require('amokjs'); 
 ```
 
-**amok** supports 2 modes. Serving files from local directory (in the same place where nodejs application is running) - **local** mode. Or serving response files from an external location accessable via http / https - **http** mode. The default setting is the local directory.
+**amok** supports 2 modes.
 
-You can select the mode by the following method
+##### local mode
+**amok** can serve responses from files located in the local directory (in the same place where nodejs application is running). By default amok starts in the **local** mode.
+
+If this mode is being used amok will be serving responses from **responses** directory at the root of your project. You can also define the custom directory for response files with *setResponsesDirectory*
+
+```javascript
+amok.setResponsesDirectory('new/responses/directory');
+```
+
+##### http mode
+
+**http** mode allows serving response files from any external location which is accessable via http / https.
+
+You can set this mode by the following method
 
 ```javascript
 amok.setMode('http');
 ```
 
-If you selected **http** mode, you have to provide external url for your response file location
+If you have set **http** mode, you have to provide the external url for your response file location
 
 ```javascript
 amok.setExternalUrl('http://httpbin.org');
 ```
 
-By default amok will start in the **local** mode and will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
-
-```javascript
-amok.setResponsesDirectory('new/responses/directory');
-```
+##### mocked responses
 
 Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
 
