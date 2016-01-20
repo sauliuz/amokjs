@@ -7,8 +7,7 @@
 var fs = require('fs');
 var casual = require('casual');
 var moment = require('moment');
-var http = require('request');
-
+var request = require('request');
 
 // initializer with default responses directory
 var build_amok = function() {
@@ -19,8 +18,7 @@ var build_amok = function() {
 
 // Initialize with default mode and responses directory
 function Amok (mock_resource_directory, mode) {
-	this.mode = mode || 'http';
-	this.externalUrl = 'http://httpbin.org'
+	this.mode = mode || 'local';
 	this.resourceDir = mock_resource_directory || 'responses';
 };
 

@@ -20,10 +20,24 @@ Project GitHub repositary contains 2 example projects. Example amok with standal
 In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
 
 ```javascript
-var amok = require('amokjs'); 
+	var amok = require('amokjs'); 
 ```
 
-By default amok will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
+**amok** supports 2 modes. Serving files from local directory (in the same place where nodejs application is running) - **local** mode. Or serving response files from an external location accessable via http / https - **http** mode. The default setting is the local directory.
+
+You can select the mode by the following method
+
+```javascript
+amok.setMode('http');
+```
+
+If you selected **http** mode, you have to provide external url for your response file location
+
+```javascript
+amok.setExternalUrl('http://httpbin.org');
+```
+
+By default amok will start in the **local** mode and will be serving responses from **responses** directory at the root of your project. You can also define custom directory for response files with *setResponsesDirectory*
 
 ```javascript
 amok.setResponsesDirectory('new/responses/directory');
