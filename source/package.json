@@ -21,6 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "casual":"1.4.7",
-    "moment":"2.10.6"
+    "moment":"2.10.6",
+    "request":"2.67.0"
   }
 }
