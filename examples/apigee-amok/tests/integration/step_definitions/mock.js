@@ -8,7 +8,7 @@ var url = 'importantorganization-test.apigee.net/mock-api';
 
 var env = process.env.NODE_ENV || 'dev';
 // debug
-console.log('running on ' + env + ' environment');
+// console.log('running on ' + env + ' environment');
 
 module.exports = function() {
     // cleanup before every scenario
