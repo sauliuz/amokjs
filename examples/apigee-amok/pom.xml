@@ -258,8 +258,9 @@
 							</environmentVariables>
 							<executable>tests/node_modules/cucumber/bin/cucumber.js</executable>
 							<commandlineArgs>
-								tests/integration
+								tests/integration --format json
 							</commandlineArgs>
+							<outputFile>cucumber.json</outputFile>
 						</configuration>
 					</execution>
 				</executions>
