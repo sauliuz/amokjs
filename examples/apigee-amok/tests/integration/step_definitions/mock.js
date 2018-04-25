@@ -4,7 +4,7 @@
 var apickli = require('apickli');
 
 // set the url and base path for your API endpoint on Apigee edge
-var url = 'dbcjd-test.apigee.net/mock-api';
+var url = 'dbcedge-eval.apigee.net/mock-api';
 
 var env = process.env.NODE_ENV || 'dev';
 // debug
