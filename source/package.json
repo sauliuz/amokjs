@@ -2,7 +2,7 @@
   "name": "amokjs",
   "version": "2.0.1",
   "description": "Simple mocking framework for node.js applications",
-  "main":"amok.js",
+  "main":"amokjs.js",
   "author": {
     "name": "Saulius Zukauskas",
     "url": "https://github.com/sauliuz"

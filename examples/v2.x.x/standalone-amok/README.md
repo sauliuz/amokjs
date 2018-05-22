@@ -1,48 +1,35 @@
-## amokjs example for standalone nodejs apps
+# amokjs - simple backend mocking framework
 
-This is example of the simple [nodejs](https://nodejs.org/) mock service using **amokjs** library.
+**amokjs** helps you build backend service mocks. It allows you to simply serve http responses from files. Supports multiple response codes, headers and dynamically generated values. Seen the [example applications](https://github.com/sauliuz/amok/tree/master/examples).
 
-Since version 2.x.x amokjs package has added [expressjs](https://expressjs.com/) as depencency and your application does not have to include it.
+Since version 2.x.x **amokjs** supports custom plugins. We welcome community submissions! 
 
-This example app only contains the main application file which uses **amokjs** as dependency to serve response files from [responses](/responses) directory.
+## how it works?
 
-**responses** direcotory contains backend mock responses files with the response content.
+By default, **amokjs** serves responses from flat files in the responses directory in project root. It supports **JSON**, **XML**, **SOAP** and other formats. You can just add a new resource file into resources derectory and **amokjs** will serve it as response.
 
-### how to run?
+
+## how to run?
+
+This example app implements simple amokjs mock served from responses directory.
 
 	yarn
-	yarn start
+	node app.js
 
-By default amok will be looking to serve responses from **responses** directory at the root of your project. You can also define custom directory for response files
-
-	```javascript
-	amok.responsesDirectory = "new/responses/directory";
-	
-	```
-
-You can also change the port on which **amockjs** listens for incoming requests. The default port is 3000.
-
-	```javascript
-	amok.port = "9090";
-	
-	```
-
-### how it works?
-
-**amokjs** will serve response content from files in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amokjs:
+**amokjs** will serve response content from a file in the responses directory on port 3030. There are 2 ways of requesting mocked backend responses from API powered by amok:
 
 * **amokjs** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
 
-* In addition **amokjs** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
+* **amokjs** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
 
-#### supported http headers
+### supported headers
 
-http headers **amokjs** supports:
+Headers **amokjs** supports:
 
-* **x-mock-response-code** request header allows developers to request any valid HTTP response code back from mock API
+* **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
 * **x-mock-filename** request header allows developers to pass mock file name in the HTTP request header rather then request path. For example if *x-mock-filename: xml* is used in the header and request path is */* mock API will attempt to serve response from *xml* file.
 
-#### supported template variables
+### supported template variables
 
 In your response files you can use several template variables in order to get values generated dynamically. Below are the template values **amockjs** supports:
 
@@ -51,8 +38,10 @@ In your response files you can use several template variables in order to get va
 * **@longid@** - will be replaced with the 10 digits long random number
 * **@shortid@** - will be replaced with the random number up to 5 digits long
 
-#### example curl requests
+### example curl requests
 
-	curl -XGET 'http://localhost:3000/xml'
-	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3000/'
-	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3000/xml'
+Below are few example curl requests to test the mock API:
+
+	curl -XGET 'http://localhost:3030/xml'
+	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3030/'
+	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3030/xml'

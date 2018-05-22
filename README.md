@@ -1,102 +1,51 @@
 [![npm version](https://badge.fury.io/js/amokjs.svg)](https://badge.fury.io/js/amokjs)
 
-### amok helps you quickly build backend mocks
+# amokjs - simple backend mocking framework
 
-> amok - to run wildly; without self-control
+**amokjs** helps you build backend service mocks. It allows you to simply serve http responses from files. Supports multiple response codes, headers and dynamically generated values. Seen the [example applications](https://github.com/sauliuz/amok/tree/master/examples).
 
-**amok** package helps you to build backend mocks quickly. In the **development** and **test** environments backend systems are somewhat not stable.
+Since version 2.x.x **amokjs** supports custom plugins. We welcome community submissions! 
 
-Project GitHub repositary contains 2 example projects. Example amok with standalone [Node.js](https://nodejs.org/) application and amok project ready to deploy to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom.
+## how it works?
 
-* [Example standalone Node.js app with amok](examples/standalone-amok)
-* [Example Apigee API proxy with amok](examples/apigee-amok)
-
-
-#### How?
-
-**amok** serves responses from flat files in the specific project directory. It supports **JSON**, **XML**, **SOAP** and other formats. You can just add a new resource file into resources derectory and **amok** will serve it as response.
+By default, **amokjs** serves responses from flat files in the responses directory in project root. It supports **JSON**, **XML**, **SOAP** and other formats. You can just add a new resource file into resources derectory and **amokjs** will serve it as response.
 
 
-#### How To Use?
+## how to run?
 
-In order to use amok package, you have to add it as a dependency within your Node.js project. After installing dependencies with *npm install* you can then require amok package within your Node.js application
+Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory]((https://github.com/sauliuz/amok/tree/master/examples) for more details.
 
-```javascript
-var amok = require('amokjs'); 
-```
+	var amokjs = require('amokjs');
+	amokjs.setPort("3030");
+	amokjs.start();
 
-##### local mode
-**amok** can serve responses from files located in the local directory (in the same place where nodejs application is running). By default amok starts in the **local** mode.
 
-If this mode is being used amok will be serving responses from **responses** directory at the root of your project. You can also define the custom directory for response files with *setResponsesDirectory*
+**amokjs** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
 
-```javascript
-amok.setResponsesDirectory('new/responses/directory');
-```
+* **amokjs** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
 
-##### http mode
+* **amokjs** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
 
-**http** mode allows serving response files from any external location which is accessable via http / https.
+### supported headers
 
-You can set this mode by the following method
-
-```javascript
-amok.setMode('http');
-```
-
-If you have set **http** mode, you have to provide the external url for your response file location
-
-```javascript
-amok.setExternalUrl('http://httpbin.org');
-```
-
-##### mocked responses
-
-Whats left is to invoke *respond* method of amok and provide it with [Express.js](http://expressjs.com/) request and response objects. Your controller file would be similar to the below
-
-```javascript
-var amok = require('amokjs');
-	
-// set response directory - optional
-amok.setResponsesDirectory('new/responses');
-	
-exports.get = function(req, res) {
-	// let amok handle mock responses
-	amok.respond(req,res);
-};
-	
-exports.post = function(req, res) {
-	// let amok handle mock responses
-	amok.respond(req,res);
-};
-```
-
-**amok** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
-
-* **amok** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
-
-* **amok** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
-
-#### Supported Headers
-
-Headers **amok** supports:
+Headers **amokjs** supports:
 
 * **x-mock-response-code** request header allows developers to request custom HTTP response code from mock API
 * **x-mock-filename** request header allows developers to pass mock file name in the HTTP request header rather then request path. For example if *x-mock-filename: xml* is used in the header and request path is */* mock API will attempt to serve response from *xml* file.
 
-#### Supported template variables
+### supported template variables
 
-In your response files you can use several template variables in order to get values generated dynamically. Below are the template values **amock** supports:
+In your response files you can use several template variables in order to get values generated dynamically. Below are the template values **amockjs** supports:
 
 * **@date@** - will be replaced with the current timestamp. Format: YYYY-MM-DD
 * **@randomDate@** - will be replaced with the random timestamp. Format: YYYY-MM-DD
 * **@longid@** - will be replaced with the 10 digits long random number
 * **@shortid@** - will be replaced with the random number up to 5 digits long
 
-#### Example curl requests
+### example curl requests
 
-**amock** example is deployed as [publically available API](http://importantorganization-test.apigee.net/mock-api/about). It is installed in [free Apigee Edge](https://accounts.apigee.com/accounts/sign_up) organization. Below are few example curl requests to test the mock API:
+Below are few example curl requests to test the mock API:
 
-	curl -XGET 'http://importantorganization-test.apigee.net/mock-api/xml'
-	curl -XGET -H 'x-mock-filename: xml' 'http://importantorganization-test.apigee.net/mock-api'
-	curl -XGET -H "x-mock-response-code: 500" 'http://importantorganization-test.apigee.net/mock-api/xml'
+	curl -XGET 'http://localhost:3000/mock-api/xml'
+	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3000/mock-api/'
+	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3000/mock-api/xml'
