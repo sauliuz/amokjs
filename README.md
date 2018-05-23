@@ -13,7 +13,7 @@ By default, **amokjs** serves responses from flat files in the responses directo
 
 ## how to run?
 
-Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory]((https://github.com/sauliuz/amok/tree/master/examples) for more details.
+Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory](https://github.com/sauliuz/amok/tree/master/examples) for more details.
 
 	var amokjs = require('amokjs');
 	amokjs.setPort('3030');
@@ -22,9 +22,9 @@ Amokjs includes Express framework and your nodejs application only has to requir
 
 **amokjs** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
 
-* **amokjs** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/mock-api/xml* mock will serve response from file named *xml*.
+* **amokjs** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/xml* mock will serve response from file named *xml*.
 
-* **amokjs** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/mock-api/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
+* **amokjs** will serve response content from a file matching **x-mock-filename** header content. In this case the main request path has to be */*. For example if you send API request to *yourapi.com/* and request will contain *x-mock-filename* HTTP header - mock will serve response from file named *xml*.
 
 ### supported headers
 
@@ -46,6 +46,6 @@ In your response files you can use several template variables in order to get va
 
 Below are few example curl requests to test the mock API:
 
-	curl -XGET 'http://localhost:3000/mock-api/xml'
-	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3000/mock-api/'
-	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3000/mock-api/xml'
+	curl -XGET 'http://localhost:3030/mock-api/xml'
+	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3030/'
+	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3030/xml'
