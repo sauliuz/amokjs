@@ -1,0 +1,8 @@
+{
+	"name": "amokjs-tests",
+	"version": "1.0.0",
+	"devDependencies": {
+		"apickli": "^1.0.0",
+		"cucumber": "^4.2.1"
+	}
+}

@@ -1,0 +1,8 @@
+<!--   A SAMPLE set of slides   -->
+<slideshow author="Yours Truly" date="Date of publication" title="Sample Slide Show">
+  <!--  TITLE SLIDE  -->
+  <slide type="all">
+    <title>Error1</title>
+    <item>Todays date @date@</item>
+  </slide>
+</slideshow>
