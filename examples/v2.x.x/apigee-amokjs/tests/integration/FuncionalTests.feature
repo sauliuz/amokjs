@@ -1,6 +1,11 @@
 Feature: Validating the existing out of the box funcionality of amock
 	As an API developer, I want to make sure that my Mock API has all the described funcionality
 	
+	Scenario: I should get json response for the basic get request
+		When I GET /json
+		Then response code should be 200
+		And response body should be valid json
+
 	Scenario: I should get default response code if no mock headers are supplied
 		When I POST to /html
 		Then response code should be 200
