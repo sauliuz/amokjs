@@ -8,7 +8,7 @@ var amokjs = require('amokjs');
 amokjs.setPort('3030');
 
 // since v2.x amokjs allows plugins
-// xxx
+// amokjs.use(amokjs-local);
 
 // start mock service
 amokjs.start();
