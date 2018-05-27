@@ -245,7 +245,7 @@
 				<executions>
 					<!-- run integration tests -->
 					<execution>
-						<id>integration</id>
+						<id>integration-test-afterdeploy</id>
 						<phase>install</phase>
 						<goals>
 							<goal>exec</goal>
