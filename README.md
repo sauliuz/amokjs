@@ -2,9 +2,9 @@
 
 # amokjs - simple backend mocking framework
 
-**amokjs** helps you build backend service mocks. It allows you to simply serve http responses from files. Supports multiple response codes, headers and dynamically generated values. Seen the [example applications](https://github.com/sauliuz/amok/tree/master/examples).
+**amokjs** helps you quickly build backend service mocks. Allows you to serve http responses from flat files. Supports multiple response codes, headers and dynamically generated values. Seen the [example applications](https://github.com/sauliuz/amokjs/tree/master/examples).
 
-Since version 2.x.x **amokjs** supports custom plugins. We welcome community submissions! 
+**amokjs** supports custom plugins. We welcome community submissions!
 
 ## how it works?
 
