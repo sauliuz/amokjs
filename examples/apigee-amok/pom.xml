@@ -266,6 +266,25 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>3.4.0</version>
+          <executions>
+            <execution>
+                <id>execution</id>
+                <phase>install</phase>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>cucumber-maven-reports</outputDirectory>
+                    <cucumberOutput>cucumber.json</cucumberOutput>
+                </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
 		</plugins>
 	</build>
 
