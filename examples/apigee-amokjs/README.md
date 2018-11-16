@@ -2,7 +2,7 @@
 
 This is **amokjs** and [node.js](https://nodejs.org/) backend mock example project for deployment to [Apigee Edge](http://apigee.com/docs/api-services/content/what-apigee-edge) API management platfrom. 
 
-Its ready to deploy API proxy with backend mock and BDD tests.
+Its ready to deploy API proxy with backend mock and BDD tests. Its using hosted targets funcionality in Apigee Edge which allows to host Nodejs applications.
 
 You can find more detailed description how amockjs npm package lets you quickly build backend mocks [here](https://github.com/sauliuz/amokjs).
 
