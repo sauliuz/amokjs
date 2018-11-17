@@ -49,3 +49,14 @@ Below are few example curl requests to test the mock API:
 	curl -XGET 'http://localhost:3030/mock-api/xml'
 	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3030/'
 	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3030/xml'
+	
+### tutorials
+
+* [Building API mocks with Amokjs](https://www.popularowl.com/blog/build-api-mocks-with-amokjs/)
+
+
+### improvements?
+
+We welcome pull requests if you have any sugestions for improvements.
+
+By [@sauliuz](https://twitter.com/sauliuz) and [popularowl.com](http://www.popularowl.com "apis made simple")
