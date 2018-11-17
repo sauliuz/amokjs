@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-    <RouteRule name="node">
+    <Description/>    
+    <FaultRules/>
+    <PreFlow name="PreFlow" />
+    <Flows/>
+    <PostFlow name="PostFlow" />
+
+
+    <RouteRule name="hostedtarget">
         <TargetEndpoint>node</TargetEndpoint>
-    </RouteRule>    
+    </RouteRule>  
+
     <HTTPProxyConnection>
         <BasePath>/v1/amokjs</BasePath>
+        <!-- accepting both, http and https connections -->
         <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
 </ProxyEndpoint>

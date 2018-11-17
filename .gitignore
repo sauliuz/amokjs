@@ -28,6 +28,5 @@ build/Release
 # dependencies
 target
 
-# node modules (leave zip.xml for Maven instructions)
-!node_modules/zip.xml
+# node modules
 node_modules

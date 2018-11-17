@@ -2,7 +2,7 @@
 	"name": "amokjs-tests",
 	"version": "1.0.0",
 	"devDependencies": {
-		"apickli": "2.1.0",
+		"apickli": "2.3.0",
 		"cucumber": "^4"
 	}
 }

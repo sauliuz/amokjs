@@ -6,7 +6,7 @@ const {defineSupportCode} = require('cucumber');
 
 defineSupportCode(function({Before}) {
     Before(function() {
-        this.apickli = new apickli.Apickli('http', 'apigee-75690b0a-eval-prod.apigee.net/v1/amokjs');
+        this.apickli = new apickli.Apickli('http', 'your-apigee-api-domain.com/v1/amokjs');
         this.apickli.addRequestHeader('Cache-Control', 'no-cache');
     });
 });

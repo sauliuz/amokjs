@@ -1,8 +1,11 @@
 {
   "name": "apigee-amokjs-example",
-  "version": "0.0.2",
-  "description": "example implementation of amokjs in Apigee API gateway",
+  "version": "0.0.3",
+  "description": "example implementation of Amokjs in Apigee Edge API gateway",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "readme": "README.md",
   "author": {
     "name": "Saulius Zukauskas",
