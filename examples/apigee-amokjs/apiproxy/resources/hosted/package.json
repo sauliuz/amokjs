@@ -1,6 +1,6 @@
 {
   "name": "apigee-amokjs-example",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "example implementation of Amokjs in Apigee Edge API gateway",
   "main": "app.js",
   "scripts": {
@@ -12,11 +12,11 @@
     "url": "https://github.com/sauliuz"
   },
   "dependencies": {
-    "amokjs": "2.0.1"
+    "amokjs": "2.0.2"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sauliuz/amok.git"
+    "url": "https://github.com/sauliuz/amokjs.git"
   }
 }
