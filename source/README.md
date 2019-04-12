@@ -11,7 +11,7 @@ By default, **amokjs** serves responses from flat files in the responses directo
 
 ## how to run?
 
-Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory]((https://github.com/sauliuz/amok/tree/master/examples) for more details.
+Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory](https://github.com/sauliuz/amok/tree/master/examples) for more details.
 
 	var amokjs = require('amokjs');
 	amokjs.setPort("3030");
