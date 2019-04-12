@@ -1,6 +1,6 @@
 {
   "name": "amokjs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simple mocking framework for node.js applications",
   "main":"amokjs.js",
   "author": {
@@ -25,6 +25,6 @@
     "casual": "^1.5.19",
     "express": "4.16.3",
     "moment": "^2.22.1",
-    "morgan": "^1.9.0"
+    "morgan": "1.9.1"
   }
 }
