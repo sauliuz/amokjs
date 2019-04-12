@@ -1,15 +1,15 @@
 {
   "name": "standalone-amokjs-example",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "example implementation of amokjs",
-  "main":"app.js",
+  "main": "app.js",
   "readme": "README.md",
   "author": {
     "name": "Saul Zukauskas",
     "url": "https://github.com/sauliuz"
   },
   "dependencies": {
-    "amokjs":"2.0.1"
+    "amokjs": "2.0.2"
   },
   "license": "MIT",
   "repository": {
