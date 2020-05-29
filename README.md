@@ -1,26 +1,22 @@
-[![npm version](https://badge.fury.io/js/amokjs.svg)](https://badge.fury.io/js/amokjs)
-
 # amokjs - simple backend mocking framework
 
-**amokjs** helps you quickly build backend service mocks. Allows you to serve http responses from flat files. Supports multiple response codes, headers and dynamically generated values. Seen the [example applications](https://github.com/sauliuz/amokjs/tree/master/examples).
+[![npm version](https://badge.fury.io/js/amokjs.svg)](https://badge.fury.io/js/amokjs)
 
-**amokjs** supports custom plugins. We welcome community submissions!
+**amokjs** is a minimal and lean API response mocking framework. It helps you quickly build and host backend API mocks. It simply serves http responses from the flat files and supports multiple response codes, headers and dynamically generated templated values. Seen the [example applications](https://github.com/sauliuz/amokjs/tree/master/examples).
 
-## how it works?
+## How it works
 
-By default, **amokjs** serves responses from flat files in the responses directory in project root. It supports **JSON**, **XML**, **SOAP** and other formats. You can just add a new resource file into resources derectory and **amokjs** will serve it as response.
+By default, **amokjs** serves responses from the flat files in the *responses* directory in project root. It supports **JSON**, **XML**, **SOAP**  response types. You can just add a new response file into *resources* derectory and **amokjs** will start servicng it as API response.
 
+## How to run
 
-## how to run?
+**amokjs** comes with Expressjs framework so your application has to only require and use **amokjs** npm module.
 
-Amokjs includes Express framework and your nodejs application only has to require and use npm module. See [examples directory](https://github.com/sauliuz/amok/tree/master/examples) for more details.
+    var amokjs = require('amokjs');
+    amokjs.setPort('3030');
+    amokjs.start();
 
-	var amokjs = require('amokjs');
-	amokjs.setPort('3030');
-	amokjs.start();
-
-
-**amokjs** will serve response content from a file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amok:
+**amokjs** will serve response content from a flat file in the responses directory. There are 2 ways of requesting mocked backend responses from API powered by amokjs:
 
 * **amokjs** will serve response content from a file matching file name in the request path. For example if you send API request to *yourapi.com/xml* mock will serve response from file named *xml*.
 
@@ -46,16 +42,15 @@ In your response files you can use several template variables in order to get va
 
 Below are few example curl requests to test the mock API:
 
-	curl -XGET 'http://localhost:3030/mock-api/xml'
-	curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3030/'
-	curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3030/xml'
-	
+    curl -XGET 'http://localhost:3030/mock-api/xml'
+    curl -XGET -H 'x-mock-filename: xml' 'http://localhost:3030/'
+    curl -XGET -H "x-mock-response-code: 500" 'http://localhost:3030/xml'
+
 ### tutorials
 
 * [Building API mocks with Amokjs](https://www.popularowl.com/blog/build-api-mocks-with-amokjs/)
 
-
-### improvements?
+### contribute
 
 We welcome pull requests if you have any sugestions for improvements.
 
