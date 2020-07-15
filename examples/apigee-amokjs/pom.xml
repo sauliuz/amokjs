@@ -42,8 +42,8 @@
 				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
 				<apigee.org>${organization}</apigee.org>
-				<apigee.username>${username}</apigee.username>
-				<apigee.password>${password}</apigee.password>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
@@ -55,8 +55,8 @@
 				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion> <!-- value of version in  https://api.enterprise.apigee.com/v2 -->
 				<apigee.org>${organization}</apigee.org>
-				<apigee.username>${username}</apigee.username>
-				<apigee.password>${password}</apigee.password>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
 				<apigee.options>override</apigee.options>
 			</properties>
 		</profile>
