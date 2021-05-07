@@ -1,8 +1,7 @@
 {
   "name": "amokjs-tests",
   "version": "0.0.1",
-  "description": "example implementation of amokjs",
-  "readme": "Readme.md",
+  "description": "amokjs tests",
   "author": {
     "name": "Saulius Zukauskas",
     "url": "https://github.com/sauliuz"

@@ -14,21 +14,19 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 10
+    timeout-minutes: 4
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       
       - name: setup amockjs server
-        working-directory: source
+        working-directory: source/tests/mock
         run: |
-          npm install
-          cd tests/mock
-          nohup node app.js
-          cd ..
+          nohup node app.js &
+          echo "done"
       
-      - name: run all tests
+      - name: run amokjs tests
         working-directory: source/tests
         run: |
           npm install
