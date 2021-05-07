@@ -1,0 +1,20 @@
+{
+  "name": "amokjs-tests",
+  "version": "0.0.1",
+  "description": "example implementation of amokjs",
+  "readme": "Readme.md",
+  "author": {
+    "name": "Saulius Zukauskas",
+    "url": "https://github.com/sauliuz"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^7.2.1",
+    "apickli": "2.3.3",
+    "cucumber": "^6.0.5"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sauliuz/amok.git"
+  }
+}

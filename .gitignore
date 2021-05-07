@@ -30,6 +30,3 @@ target
 
 # node modules
 node_modules
-
-# npm lock
-package-lock.json

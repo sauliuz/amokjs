@@ -1,0 +1,34 @@
+# GitHub workflow to automate amockjs builds
+
+name: amockjs tests
+
+on:
+  # push or pull request events to the the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # allow you to run this workflow manually on GitHub from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: setup amockjs server
+        working-directory: source
+        run: |
+          npm install
+          cd tests/mock
+          node app.js
+      
+      - name: run all tests
+        working-directory: source/tests
+        run: |
+          npm install
+          npx cucumber-js features
