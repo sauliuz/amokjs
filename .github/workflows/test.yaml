@@ -25,8 +25,7 @@ jobs:
         run: |
           npm install
           cd tests/mock
-          nohup node app.js
-          cd ..
+          nohup node app.js > output.txt && cd ..
       
       - name: run all tests
         working-directory: source/tests
