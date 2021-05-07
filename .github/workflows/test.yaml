@@ -21,8 +21,10 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: setup amockjs server
-        working-directory: source/tests/mock
+        working-directory: source
         run: |
+          npm install
+          cd tests/mock
           nohup node app.js &
           echo "done"
       
