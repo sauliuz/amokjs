@@ -1,6 +1,7 @@
 # amokjs - very simple api mocking
 
 [![npm version](https://badge.fury.io/js/amokjs.svg)](https://badge.fury.io/js/amokjs)
+![amockjs tests](https://github.com/sauliuz/amokjs/actions/workflows/test.yaml/badge.svg)
 
 **amokjs** is a minimal API response mocking framework. It helps you very quickly build and host backend API mocks. It simply serves HTTP responses from the flat files. It supports all HTTP response codes, headers and dynamically generated templated values. See the [example applications](https://github.com/sauliuz/amokjs/tree/master/examples).
 
