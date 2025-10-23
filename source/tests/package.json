@@ -7,8 +7,8 @@
     "url": "https://github.com/sauliuz"
   },
   "dependencies": {
-    "apickli": "2.3.3",
-    "cucumber": "5.1.0"
+    "apickli": "3.0.3",
+    "@cucumber/cucumber": "12.2.0"
   },
   "license": "MIT",
   "repository": {

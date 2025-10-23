@@ -3,7 +3,7 @@
 'use strict';
 
 const apickli = require('apickli');
-const {Before, setDefaultTimeout} = require('cucumber');
+const {Before, setDefaultTimeout} = require('@cucumber/cucumber');
 
 Before(function() {
   this.apickli = new apickli.Apickli('http', 'localhost:3000');
